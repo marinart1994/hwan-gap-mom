@@ -36,7 +36,6 @@
       background-size: 28px 28px;
       font-family: 'Noto Sans KR', sans-serif;
       color: var(--ink);
-      touch-action: none;
       overflow-x: hidden;
     }
 
@@ -537,10 +536,9 @@
     }
 
     document.addEventListener('touchstart', e => {
-      e.preventDefault();
       for (const t of e.changedTouches)
         burst(t.clientX, t.clientY, 8 + Math.floor(Math.random() * 5));
-    }, { passive: false });
+    }, { passive: true });
 
     document.addEventListener('click', e => {
       if (e.target.closest('a')) return;
