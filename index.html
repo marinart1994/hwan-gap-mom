@@ -3,434 +3,548 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>🌸 엄마 환갑 축하해요!</title>
+  <title>엄마 환갑을 축하합니다</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Noto+Sans+KR:wght@400;700&display=swap');
+    /* ── 컬러 토큰 ── */
+    :root {
+      --ink:        #1e120a;
+      --ink-mid:    #5a3820;
+      --ink-light:  #8c6040;
+      --red:        #8b1a1a;
+      --red-light:  #c04040;
+      --gold:       #a87628;
+      --gold-light: #d4a84a;
+      --pine:       #2d5b4e;
+      --paper:      #f8f2e6;
+      --paper-warm: #f0e6d0;
+      --paper-deep: #e4d4b8;
+      --line:       rgba(139,90,43,0.18);
+    }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --gold: #c8923a;
-      --gold-light: #f0c87a;
-      --rose: #e07090;
-      --rose-light: #ffb3cc;
-      --cream: #fff8f0;
-      --brown: #7a4f2a;
-    }
-
+    /* ── 배경 — 한지 + 창살 격자 ── */
     body {
       min-height: 100vh;
-      background: linear-gradient(160deg, #fff3e8 0%, #ffe4d0 35%, #ffd6e8 70%, #ffe8f4 100%);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 28px 28px;
       font-family: 'Noto Sans KR', sans-serif;
-      overflow-x: hidden;
+      color: var(--ink);
       touch-action: none;
+      overflow-x: hidden;
     }
 
-    /* ── 떠오르는 꽃잎/꽃 ── */
-    .float-container {
+    /* 한지 워시 오버레이 */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 0%,   rgba(248,242,230,0.92) 0%, transparent 70%),
+                  radial-gradient(ellipse 100% 60% at 50% 100%, rgba(240,230,210,0.85) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── 상단 단청 띠 ── */
+    .dancheong-top {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--red)        0%,
+        var(--gold)      25%,
+        var(--pine)      50%,
+        var(--gold)      75%,
+        var(--red)       100%);
+      z-index: 100;
+    }
+
+    /* ── 떠오르는 꽃잎 ── */
+    .float-wrap {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
+      z-index: 2;
       overflow: hidden;
     }
 
     .petal {
       position: absolute;
       bottom: -60px;
-      animation: petalFloat linear infinite;
       opacity: 0;
+      animation: rise linear infinite;
+      font-size: 1.1rem;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
     }
 
-    @keyframes petalFloat {
-      0%   { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.8); }
-      8%   { opacity: 1; }
-      50%  { transform: translateY(-52vh) rotate(180deg) scale(1.1); opacity: 0.75; }
-      100% { opacity: 0; transform: translateY(-115vh) rotate(360deg) scale(0.5); }
+    @keyframes rise {
+      0%   { transform: translateY(0) rotate(0deg) scale(0.7);   opacity: 0; }
+      6%   { opacity: 0.6; }
+      50%  { transform: translateY(-52vh) rotate(200deg) scale(1); opacity: 0.4; }
+      100% { transform: translateY(-115vh) rotate(400deg) scale(0.5); opacity: 0; }
     }
 
-    .p1  { left:  4%; font-size:1.6rem; animation-duration:8s;   animation-delay:0s;   }
-    .p2  { left: 12%; font-size:2.0rem; animation-duration:10s;  animation-delay:1.4s; }
-    .p3  { left: 21%; font-size:1.3rem; animation-duration:7s;   animation-delay:2.7s; }
-    .p4  { left: 30%; font-size:2.3rem; animation-duration:12s;  animation-delay:0.9s; }
-    .p5  { left: 40%; font-size:1.5rem; animation-duration:8.5s; animation-delay:3.3s; }
-    .p6  { left: 51%; font-size:1.9rem; animation-duration:11s;  animation-delay:2.0s; }
-    .p7  { left: 62%; font-size:1.4rem; animation-duration:9s;   animation-delay:0.5s; }
-    .p8  { left: 72%; font-size:2.2rem; animation-duration:10.5s;animation-delay:2.2s; }
-    .p9  { left: 81%; font-size:1.7rem; animation-duration:7.5s; animation-delay:4.2s; }
-    .p10 { left: 90%; font-size:2.0rem; animation-duration:9s;   animation-delay:1.7s; }
-    .p11 { left: 16%; font-size:1.2rem; animation-duration:13s;  animation-delay:5.5s; }
-    .p12 { left: 76%; font-size:2.5rem; animation-duration:11.5s;animation-delay:3.8s; }
+    .p1  { left: 5%;  font-size:0.9rem;  animation-duration:9s;   animation-delay:0s;   }
+    .p2  { left:13%;  font-size:1.3rem;  animation-duration:11s;  animation-delay:1.5s; }
+    .p3  { left:22%;  font-size:0.8rem;  animation-duration:8s;   animation-delay:3.0s; }
+    .p4  { left:32%;  font-size:1.5rem;  animation-duration:13s;  animation-delay:0.8s; }
+    .p5  { left:43%;  font-size:1.0rem;  animation-duration:9.5s; animation-delay:2.2s; }
+    .p6  { left:54%;  font-size:1.2rem;  animation-duration:12s;  animation-delay:4.1s; }
+    .p7  { left:63%;  font-size:0.85rem; animation-duration:10s;  animation-delay:1.0s; }
+    .p8  { left:73%;  font-size:1.4rem;  animation-duration:11.5s;animation-delay:2.8s; }
+    .p9  { left:83%;  font-size:0.9rem;  animation-duration:8.5s; animation-delay:5.0s; }
+    .p10 { left:91%;  font-size:1.1rem;  animation-duration:10.5s;animation-delay:1.8s; }
 
-    /* ── 전체 레이아웃 ── */
+    /* ── 페이지 래퍼 ── */
     .page {
       position: relative;
       z-index: 10;
-      max-width: 560px;
-      width: 93%;
+      max-width: 480px;
+      width: 100%;
       margin: 0 auto;
-      padding: 40px 0 60px;
+      padding: 52px 24px 72px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 0;
     }
 
-    /* ── 헤더 카드 ── */
+    /* ── 공통 섹션 구분자 ── */
+    .divider {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .divider-symbol {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+    }
+
+    /* ── 히어로 ── */
     .hero {
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(14px);
-      border: 2px solid rgba(200,146,58,0.35);
-      border-radius: 28px;
-      padding: 44px 36px 38px;
+      width: 100%;
       text-align: center;
-      box-shadow: 0 16px 50px rgba(200,120,60,0.15);
-      animation: cardIn 1s cubic-bezier(0.34,1.56,0.64,1) both;
+      padding: 48px 28px 40px;
+      background: rgba(248,242,230,0.6);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--red);
+      border-bottom: 3px solid var(--red);
+      position: relative;
     }
 
-    @keyframes cardIn {
-      from { opacity: 0; transform: scale(0.75) translateY(40px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+    /* 꼭지 모서리 장식 */
+    .hero::before, .hero::after,
+    .hero-inner::before, .hero-inner::after {
+      content: '◆';
+      position: absolute;
+      font-size: 0.5rem;
+      color: var(--red);
+    }
+    .hero::before  { top: -7px;  left:  10px; }
+    .hero::after   { top: -7px;  right: 10px; }
+    .hero-inner::before { bottom: -7px; left:  10px; }
+    .hero-inner::after  { bottom: -7px; right: 10px; }
+
+    .hero-inner { position: relative; }
+
+    .hero-pre {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(0.78rem, 2.8vw, 0.88rem);
+      color: var(--gold);
+      letter-spacing: 0.35em;
+      margin-bottom: 18px;
+      display: block;
     }
 
-    .main-icon {
-      font-size: 68px;
-      display: inline-block;
-      animation: bloom 2s ease-in-out infinite;
-      margin-bottom: 10px;
+    .hero-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(2.2rem, 9vw, 3.4rem);
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: 0.15em;
+      line-height: 1.2;
+      margin-bottom: 8px;
     }
 
-    @keyframes bloom {
-      0%, 100% { transform: scale(1) rotate(-3deg); }
-      50%       { transform: scale(1.12) rotate(3deg); }
+    .hero-sub {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(1.0rem, 4vw, 1.3rem);
+      font-weight: 400;
+      color: var(--ink-mid);
+      letter-spacing: 0.12em;
+      margin-bottom: 28px;
+      line-height: 1.8;
     }
 
     .hero-deco {
-      font-size: clamp(1.1rem, 4.5vw, 1.4rem);
-      letter-spacing: 5px;
-      margin-bottom: 14px;
-      animation: twinkle 2.5s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.5; }
+    .hero-deco-line {
+      width: 48px;
+      height: 1px;
+      background: var(--gold-light);
     }
 
-    h1 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.8rem, 6.5vw, 2.8rem);
-      font-weight: 900;
-      background: linear-gradient(120deg, #c8923a, #e8b860, #c8923a);
-      background-size: 250%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 4s linear infinite;
-      line-height: 1.35;
-      margin-bottom: 6px;
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: 0%; }
-      100% { background-position: 250%; }
-    }
-
-    .sub {
-      font-size: clamp(0.88rem, 3.5vw, 1.05rem);
-      color: var(--rose);
-      font-weight: 700;
-      margin-bottom: 18px;
-      letter-spacing: 0.05em;
+    .hero-deco-symbol {
+      color: var(--gold);
+      font-size: 1.1rem;
     }
 
     .touch-hint {
-      font-size: clamp(0.78rem, 3vw, 0.9rem);
-      color: #b07850;
-      font-weight: 600;
-      background: rgba(255,230,190,0.6);
-      border-radius: 20px;
-      padding: 7px 16px;
       display: inline-block;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(0.72rem, 2.6vw, 0.82rem);
+      font-weight: 300;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+      border: 1px solid var(--line);
+      padding: 7px 18px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.4);
     }
 
-    /* ── 정보 카드 공통 ── */
-    .info-card {
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(10px);
-      border: 1.5px solid rgba(200,146,58,0.28);
-      border-radius: 22px;
-      padding: 26px 28px;
-      box-shadow: 0 8px 30px rgba(200,120,60,0.1);
-      animation: cardIn 1s cubic-bezier(0.34,1.56,0.64,1) both;
-    }
-
-    .info-card:nth-child(2) { animation-delay: 0.1s; }
-    .info-card:nth-child(3) { animation-delay: 0.2s; }
-    .info-card:nth-child(4) { animation-delay: 0.3s; }
-
-    .card-title {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(0.95rem, 3.8vw, 1.1rem);
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(200,146,58,0.4), transparent);
-    }
-
-    /* ── 일정 ── */
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .schedule-item {
-      background: linear-gradient(135deg, #fff8ee, #fff0e0);
-      border: 1.5px solid rgba(200,146,58,0.25);
-      border-radius: 14px;
-      padding: 14px 16px;
+    /* ── 정보 블록 공통 ── */
+    .block {
+      width: 100%;
       text-align: center;
     }
 
-    .schedule-label {
-      font-size: 0.75rem;
-      color: #b07040;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+    .block-label {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(0.7rem, 2.5vw, 0.78rem);
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ── 일정 ── */
+    .schedule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+    }
+
+    .schedule-item {
+      flex: 1;
+      text-align: center;
+      padding: 22px 12px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid var(--line);
+    }
+
+    .schedule-item:first-child {
+      border-right: none;
+    }
+
+    .s-month {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
       margin-bottom: 4px;
     }
 
-    .schedule-value {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1rem, 4vw, 1.2rem);
-      font-weight: 600;
-      color: var(--brown);
+    .s-day {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(2.2rem, 8vw, 3rem);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 4px;
     }
 
-    .schedule-sub {
-      font-size: 0.78rem;
-      color: #c08050;
-      margin-top: 2px;
+    .s-week {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      letter-spacing: 0.1em;
+    }
+
+    .schedule-between {
+      padding: 0 16px;
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      white-space: nowrap;
     }
 
     /* ── 장소 ── */
-    .place-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .venue-name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(1.2rem, 5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.12em;
+      line-height: 1.5;
+      margin-bottom: 10px;
     }
 
-    .place-name {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.1rem, 4.5vw, 1.3rem);
-      font-weight: 600;
-      color: var(--brown);
-    }
-
-    .place-desc {
-      font-size: clamp(0.82rem, 3vw, 0.92rem);
-      color: #a07050;
-      line-height: 1.7;
+    .venue-sub {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(0.8rem, 2.8vw, 0.88rem);
+      font-weight: 300;
+      color: var(--ink-light);
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+      margin-bottom: 22px;
     }
 
     .map-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 12px 22px;
-      background: linear-gradient(135deg, #2db400, #1e9900);
-      color: #fff;
-      font-size: clamp(0.85rem, 3.3vw, 0.95rem);
-      font-weight: 700;
+      gap: 8px;
+      padding: 13px 28px;
+      border: 1.5px solid var(--pine);
+      color: var(--pine);
       font-family: 'Noto Sans KR', sans-serif;
-      border-radius: 12px;
+      font-size: clamp(0.8rem, 2.8vw, 0.88rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-decoration: none;
-      box-shadow: 0 6px 18px rgba(45,180,0,0.35);
-      transition: transform 0.15s, box-shadow 0.15s;
-      align-self: flex-start;
+      background: rgba(45,91,78,0.06);
+      transition: background 0.2s, color 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .map-btn:hover  { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(45,180,0,0.4); }
-    .map-btn:active { transform: translateY(0) scale(0.97); }
+    .map-btn:hover  { background: var(--pine); color: #fff; }
+    .map-btn:active { opacity: 0.8; }
 
-    .map-btn svg {
-      width: 18px; height: 18px; flex-shrink: 0;
-    }
+    .map-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
     /* ── 메시지 ── */
-    .message-text {
-      font-size: clamp(0.9rem, 3.4vw, 1.02rem);
-      line-height: 2.0;
-      color: #7a4f30;
+    .message {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(0.95rem, 3.5vw, 1.08rem);
+      font-weight: 400;
+      color: var(--ink-mid);
+      line-height: 2.4;
+      letter-spacing: 0.06em;
       text-align: center;
       word-break: keep-all;
     }
 
-    /* ── 푸터 ── */
-    .footer-deco {
+    /* ── 하단 캡션 ── */
+    .footer-text {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      letter-spacing: 0.3em;
       text-align: center;
-      font-size: clamp(1.3rem, 5vw, 1.7rem);
-      letter-spacing: 6px;
-      color: var(--rose-light);
-      padding: 10px 0 4px;
-      animation: twinkle 3s ease-in-out infinite;
+      padding: 24px 0 0;
     }
 
-    /* ── 파티클 ── */
-    .burst-particle {
+    /* ── 터치 파티클 ── */
+    .burst {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      animation: burstFloat 1.1s ease-out forwards;
+      animation: burstAnim 1.0s ease-out forwards;
       will-change: transform, opacity;
       line-height: 1;
     }
 
-    @keyframes burstFloat {
+    @keyframes burstAnim {
       0%   { opacity: 1; transform: translate(0,0) scale(1); }
-      60%  { opacity: 0.85; }
-      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.15); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.1); }
     }
 
-    @media (max-width: 420px) {
-      .hero { padding: 36px 24px 30px; }
-      .info-card { padding: 20px 20px; }
+    /* ── 반응형 ── */
+    @media (max-width: 400px) {
+      .page { padding: 48px 16px 64px; }
+      .hero { padding: 40px 20px 34px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 떠오르는 꽃 배경 -->
-  <div class="float-container">
+  <div class="dancheong-top"></div>
+
+  <!-- 꽃잎 배경 -->
+  <div class="float-wrap">
     <span class="petal p1">🌸</span>
-    <span class="petal p2">🌺</span>
-    <span class="petal p3">🌼</span>
+    <span class="petal p2">🌸</span>
+    <span class="petal p3">🌺</span>
     <span class="petal p4">🌸</span>
-    <span class="petal p5">🌷</span>
+    <span class="petal p5">🌼</span>
     <span class="petal p6">🌸</span>
     <span class="petal p7">🌺</span>
     <span class="petal p8">🌸</span>
     <span class="petal p9">🌼</span>
-    <span class="petal p10">🌷</span>
-    <span class="petal p11">🌸</span>
-    <span class="petal p12">🌺</span>
+    <span class="petal p10">🌸</span>
   </div>
 
   <div class="page">
 
-    <!-- 헤더 -->
+    <!-- 히어로 -->
     <div class="hero">
-      <div class="main-icon">🌸</div>
-      <div class="hero-deco">🌺 🌼 🌸 🌼 🌺</div>
-      <h1>엄마 환갑<br>축하해요!</h1>
-      <p class="sub">60년의 아름다운 여정을 축하합니다 💛</p>
-      <span class="touch-hint">✨ 화면을 터치하면 꽃이 피어요</span>
+      <div class="hero-inner">
+        <span class="hero-pre">六 十 歲 還 甲</span>
+
+        <div class="hero-deco">
+          <div class="hero-deco-line"></div>
+          <span class="hero-deco-symbol">🌸</span>
+          <div class="hero-deco-line"></div>
+        </div>
+
+        <h1 class="hero-title">환갑을<br>축하합니다</h1>
+        <p class="hero-sub">
+          사랑하는 어머니의<br>
+          아름다운 환갑을 기억하며
+        </p>
+
+        <div class="hero-deco">
+          <div class="hero-deco-line"></div>
+          <span class="hero-deco-symbol">◆</span>
+          <div class="hero-deco-line"></div>
+        </div>
+
+        <span class="touch-hint">화면을 터치하면 꽃잎이 흩날립니다</span>
+      </div>
     </div>
 
     <!-- 일정 -->
-    <div class="info-card">
-      <div class="card-title">🗓 일정</div>
-      <div class="schedule-grid">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-symbol">일 정</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="block">
+      <span class="block-label">D A T E</span>
+      <div class="schedule">
         <div class="schedule-item">
-          <div class="schedule-label">시작</div>
-          <div class="schedule-value">8월 15일</div>
-          <div class="schedule-sub">금요일</div>
+          <div class="s-month">8월</div>
+          <div class="s-day">15</div>
+          <div class="s-week">금요일</div>
         </div>
+        <div class="schedule-between">—</div>
         <div class="schedule-item">
-          <div class="schedule-label">종료</div>
-          <div class="schedule-value">8월 16일</div>
-          <div class="schedule-sub">토요일</div>
+          <div class="s-month">8월</div>
+          <div class="s-day">16</div>
+          <div class="s-week">토요일</div>
         </div>
       </div>
     </div>
 
     <!-- 장소 -->
-    <div class="info-card">
-      <div class="card-title">📍 장소</div>
-      <div class="place-wrap">
-        <div class="place-name">북촌 학민재 한옥스테이</div>
-        <div class="place-desc">
-          서울 북촌의 고즈넉한 한옥에서<br>
-          소중한 사람들과 함께하는 특별한 하루 🏮
-        </div>
-        <a
-          class="map-btn"
-          href="https://map.naver.com/p/entry/place/1046221217?placePath=%2Fhome%3Fentry%3Dplt%26from%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202607142254%26locale%3Dko%26svcName%3Dmap_pcv5&searchType=place&lng=126.9843268&lat=37.5827065&c=15.00,0,0,0,dh"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          네이버 지도로 보기
-        </a>
-      </div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-symbol">장 소</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="block">
+      <span class="block-label">V E N U E</span>
+      <p class="venue-name">북촌 학민재<br>한옥스테이</p>
+      <p class="venue-sub">
+        서울 북촌의 고즈넉한 한옥에서<br>
+        온 가족이 함께하는 특별한 하룻밤
+      </p>
+      <a
+        class="map-btn"
+        href="https://map.naver.com/p/entry/place/1046221217?placePath=%2Fhome%3Fentry%3Dplt%26from%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202607142254%26locale%3Dko%26svcName%3Dmap_pcv5&searchType=place&lng=126.9843268&lat=37.5827065&c=15.00,0,0,0,dh"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        네이버 지도로 보기
+      </a>
     </div>
 
     <!-- 메시지 -->
-    <div class="info-card">
-      <div class="card-title">💛 마음을 담아</div>
-      <p class="message-text">
-        60년 동안 온 마음으로 가족을 돌봐주신<br>
-        엄마, 정말 사랑해요 🌸<br><br>
-        앞으로의 60년도 건강하고 행복하게<br>
-        꽃처럼 아름답게 피어나시길 바라요 💛<br><br>
-        언제나 고맙고, 언제나 사랑해요 🌺
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-symbol">마 음</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="block">
+      <p class="message">
+        60년을 한결같이<br>
+        사랑으로 걸어오신 어머니<br>
+        <br>
+        곁에 있어 주셔서<br>
+        늘 감사하고 사랑합니다<br>
+        <br>
+        앞으로의 날들도<br>
+        봄 꽃처럼 환하고<br>
+        건강하시길 바랍니다
       </p>
     </div>
 
-    <div class="footer-deco">🌸 🌺 🌼 🌷 🌼 🌺 🌸</div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-symbol">🌸</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <p class="footer-text">2025 · 사랑을 담아</p>
 
   </div>
 
   <script>
-    const PARTICLES = [
-      '🌸','🌸','🌸','🌺','🌺','🌼','🌷',
-      '✨','💛','🧡','💗','🌸','🌺'
-    ];
+    const PETALS = ['🌸','🌸','🌸','🌺','🌼','🌷','✿','🌸','🌺'];
 
-    function spawnBurst(x, y, count) {
-      for (let i = 0; i < count; i++) {
+    function burst(x, y, n) {
+      for (let i = 0; i < n; i++) {
         const el = document.createElement('span');
-        el.className = 'burst-particle';
-        el.textContent = PARTICLES[Math.floor(Math.random() * PARTICLES.length)];
+        el.className = 'burst';
+        el.textContent = PETALS[Math.floor(Math.random() * PETALS.length)];
 
-        const angle = (Math.random() * 160 + 190) * (Math.PI / 180);
-        const dist  = 70 + Math.random() * 140;
-        el.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
-        el.style.setProperty('--dy', (Math.sin(angle) * dist - 30) + 'px');
+        const a = (Math.random() * 160 + 195) * (Math.PI / 180);
+        const d = 60 + Math.random() * 120;
+        el.style.setProperty('--dx', (Math.cos(a) * d) + 'px');
+        el.style.setProperty('--dy', (Math.sin(a) * d - 25) + 'px');
         el.style.left = x + 'px';
         el.style.top  = y + 'px';
-        el.style.fontSize = (0.9 + Math.random() * 1.1) + 'rem';
-        el.style.animationDuration = (0.8 + Math.random() * 0.55) + 's';
-        el.style.animationDelay    = (i * 0.03) + 's';
+        el.style.fontSize = (0.85 + Math.random() * 0.9) + 'rem';
+        el.style.animationDuration = (0.75 + Math.random() * 0.5) + 's';
+        el.style.animationDelay    = (i * 0.028) + 's';
 
         document.body.appendChild(el);
         el.addEventListener('animationend', () => el.remove());
       }
     }
 
-    document.addEventListener('touchstart', function(e) {
+    document.addEventListener('touchstart', e => {
       e.preventDefault();
-      for (const t of e.changedTouches) {
-        spawnBurst(t.clientX, t.clientY, 8 + Math.floor(Math.random() * 5));
-      }
+      for (const t of e.changedTouches)
+        burst(t.clientX, t.clientY, 8 + Math.floor(Math.random() * 5));
     }, { passive: false });
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', e => {
       if (e.target.closest('a')) return;
-      spawnBurst(e.clientX, e.clientY, 8 + Math.floor(Math.random() * 5));
+      burst(e.clientX, e.clientY, 8 + Math.floor(Math.random() * 5));
     });
   </script>
 </body>
