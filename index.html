@@ -349,6 +349,188 @@
       word-break: keep-all;
     }
 
+    /* ── 편지 창구 ── */
+    .letter-desk {
+      width: 100%;
+      text-align: left;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--gold);
+      padding: 24px 20px 20px;
+    }
+
+    .letter-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .letter-intro {
+      font-size: clamp(0.78rem, 2.8vw, 0.88rem);
+      font-weight: 300;
+      color: var(--ink-light);
+      line-height: 1.8;
+      text-align: center;
+      word-break: keep-all;
+      margin-bottom: 18px;
+    }
+
+    .letter-field,
+    .letter-textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: rgba(248,242,230,0.72);
+      color: var(--ink);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .letter-field {
+      height: 44px;
+      padding: 0 13px;
+      margin-bottom: 10px;
+    }
+
+    .letter-textarea {
+      min-height: 178px;
+      resize: vertical;
+      padding: 13px;
+      line-height: 1.8;
+    }
+
+    .letter-field::placeholder,
+    .letter-textarea::placeholder {
+      color: rgba(90,56,32,0.52);
+    }
+
+    .letter-field:focus,
+    .letter-textarea:focus {
+      border-color: rgba(168,118,40,0.6);
+      box-shadow: 0 0 0 3px rgba(212,168,74,0.14);
+    }
+
+    .letter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .letter-btn {
+      min-height: 44px;
+      border: 1.5px solid var(--red);
+      background: rgba(139,26,26,0.06);
+      color: var(--red);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: clamp(0.78rem, 2.8vw, 0.88rem);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .letter-btn:disabled {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
+    .letter-btn:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .letter-btn.secondary {
+      border-color: var(--pine);
+      background: rgba(45,91,78,0.06);
+      color: var(--pine);
+    }
+
+    .letter-btn.secondary:hover {
+      background: var(--pine);
+      color: #fff;
+    }
+
+    .letter-status {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--ink-light);
+      font-size: 0.76rem;
+      line-height: 1.6;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .guestbook {
+      width: 100%;
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .guestbook-empty,
+    .guestbook-note {
+      color: var(--ink-light);
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.7;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .guestbook-note {
+      margin-top: 4px;
+      opacity: 0.82;
+    }
+
+    .guestbook-entry {
+      border: 1px solid var(--line);
+      background: rgba(248,242,230,0.66);
+      padding: 15px 14px 13px;
+    }
+
+    .guestbook-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .guestbook-name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .guestbook-date {
+      flex-shrink: 0;
+      color: var(--ink-light);
+      font-size: 0.68rem;
+      font-weight: 300;
+      white-space: nowrap;
+    }
+
+    .guestbook-message {
+      color: var(--ink-mid);
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.92rem;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      word-break: keep-all;
+    }
+
     /* ── 하단 캡션 ── */
     .footer-text {
       font-family: 'Nanum Myeongjo', serif;
@@ -378,6 +560,8 @@
     @media (max-width: 400px) {
       .page { padding: 48px 16px 64px; }
       .hero { padding: 40px 20px 34px; }
+      .letter-desk { padding: 22px 16px 18px; }
+      .letter-actions { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -501,6 +685,32 @@
       </p>
     </div>
 
+    <!-- 편지 창구 -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-symbol">편 지</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="letter-desk" aria-labelledby="letterTitle">
+      <h2 class="letter-title" id="letterTitle">엄마께 마음 전하기</h2>
+      <p class="letter-intro">
+        함께하지 못하는 마음도, 현장에서 다 하지 못한 말도<br>
+        이곳에 적어 따뜻하게 전해 주세요.
+      </p>
+      <input class="letter-field" id="letterName" type="text" autocomplete="name" placeholder="보내는 사람" aria-label="보내는 사람" />
+      <textarea class="letter-textarea" id="letterBody" placeholder="엄마께 전하고 싶은 말을 적어 주세요." aria-label="편지 내용"></textarea>
+      <div class="letter-actions">
+        <button class="letter-btn" id="saveLetter" type="button">방명록에 남기기</button>
+        <button class="letter-btn secondary" id="copyLetter" type="button">편지 복사하기</button>
+      </div>
+      <p class="letter-status" id="letterStatus" role="status" aria-live="polite"></p>
+      <div class="guestbook" id="guestbook" aria-live="polite"></div>
+      <p class="guestbook-note">
+        남겨진 편지는 가족들과 함께 볼 수 있도록 저장됩니다.
+      </p>
+    </div>
+
     <div class="divider">
       <div class="divider-line"></div>
       <span class="divider-symbol">🌸</span>
@@ -513,6 +723,205 @@
 
   <script>
     const PETALS = ['🌸','🌸','🌸','🌺','🌼','🌷','✿','🌸','🌺'];
+    const letterName = document.getElementById('letterName');
+    const letterBody = document.getElementById('letterBody');
+    const letterStatus = document.getElementById('letterStatus');
+    const saveLetter = document.getElementById('saveLetter');
+    const copyLetter = document.getElementById('copyLetter');
+    const guestbook = document.getElementById('guestbook');
+    const GUESTBOOK_KEY = 'hwangapGuestbookEntries';
+    // Supabase Project URL과 anon public key를 넣으면 공유 방명록으로 동작합니다.
+    const SUPABASE_URL = '';
+    const SUPABASE_ANON_KEY = '';
+    const GUESTBOOK_TABLE = 'guestbook_entries';
+
+    function hasRemoteGuestbook() {
+      return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+    }
+
+    async function supabaseRequest(path, options = {}) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+        ...options,
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation',
+          ...(options.headers || {})
+        }
+      });
+
+      if (!response.ok) throw new Error(`Supabase request failed: ${response.status}`);
+      return response.status === 204 ? null : response.json();
+    }
+
+    async function fetchRemoteEntries() {
+      return supabaseRequest(`${GUESTBOOK_TABLE}?select=name,body,created_at&order=created_at.desc&limit=50`);
+    }
+
+    async function createRemoteEntry(entry) {
+      const rows = await supabaseRequest(GUESTBOOK_TABLE, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: entry.name || null,
+          body: entry.body
+        })
+      });
+      return rows[0];
+    }
+
+    function getEntries() {
+      try {
+        return JSON.parse(localStorage.getItem(GUESTBOOK_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveEntries(entries) {
+      localStorage.setItem(GUESTBOOK_KEY, JSON.stringify(entries));
+    }
+
+    function normalizeEntry(entry) {
+      return {
+        name: entry.name || '',
+        body: entry.body,
+        createdAt: entry.createdAt || entry.created_at || new Date().toISOString()
+      };
+    }
+
+    function formatDate(value) {
+      return new Intl.DateTimeFormat('ko-KR', {
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(new Date(value));
+    }
+
+    function renderGuestbook() {
+      const entries = getEntries().map(normalizeEntry);
+      guestbook.innerHTML = '';
+
+      if (!entries.length) {
+        const empty = document.createElement('p');
+        empty.className = 'guestbook-empty';
+        empty.textContent = '아직 남겨진 편지가 없습니다.';
+        guestbook.appendChild(empty);
+        return;
+      }
+
+      for (const entry of entries) {
+        const item = document.createElement('article');
+        item.className = 'guestbook-entry';
+
+        const meta = document.createElement('div');
+        meta.className = 'guestbook-meta';
+
+        const name = document.createElement('div');
+        name.className = 'guestbook-name';
+        name.textContent = entry.name || '이름 없는 마음';
+
+        const date = document.createElement('time');
+        date.className = 'guestbook-date';
+        date.dateTime = entry.createdAt;
+        date.textContent = formatDate(entry.createdAt);
+
+        const message = document.createElement('p');
+        message.className = 'guestbook-message';
+        message.textContent = entry.body;
+
+        meta.append(name, date);
+        item.append(meta, message);
+        guestbook.appendChild(item);
+      }
+    }
+
+    async function loadGuestbook() {
+      if (!hasRemoteGuestbook()) {
+        renderGuestbook();
+        setLetterStatus('Supabase 설정값을 넣으면 모두가 같은 방명록을 볼 수 있습니다.');
+        return;
+      }
+
+      try {
+        const remoteEntries = await fetchRemoteEntries();
+        saveEntries(remoteEntries.map(normalizeEntry));
+        renderGuestbook();
+        setLetterStatus('');
+      } catch {
+        renderGuestbook();
+        setLetterStatus('방명록을 불러오지 못해 이 기기에 저장된 기록을 보여드립니다.');
+      }
+    }
+
+    function composeLetter() {
+      const name = letterName.value.trim();
+      const body = letterBody.value.trim();
+      const from = name ? `\n\n- ${name} 올림` : '';
+      return body ? `${body}${from}` : '';
+    }
+
+    function setLetterStatus(text) {
+      letterStatus.textContent = text;
+    }
+
+    function requireLetter() {
+      const text = composeLetter();
+      if (text) return text;
+
+      setLetterStatus('먼저 편지 내용을 적어 주세요.');
+      letterBody.focus();
+      return '';
+    }
+
+    copyLetter.addEventListener('click', async () => {
+      const text = requireLetter();
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        setLetterStatus('편지가 복사되었습니다. 원하는 곳에 붙여넣어 전해 주세요.');
+      } catch {
+        letterBody.select();
+        setLetterStatus('복사가 어려워 편지 내용을 선택해 두었습니다.');
+      }
+    });
+
+    saveLetter.addEventListener('click', async () => {
+      const body = letterBody.value.trim();
+      if (!body) {
+        requireLetter();
+        return;
+      }
+
+      const entry = {
+        name: letterName.value.trim(),
+        body,
+        createdAt: new Date().toISOString()
+      };
+
+      saveLetter.disabled = true;
+      setLetterStatus('방명록에 남기는 중입니다.');
+
+      try {
+        const savedEntry = hasRemoteGuestbook() ? await createRemoteEntry(entry) : entry;
+        const entries = getEntries();
+        entries.unshift(normalizeEntry(savedEntry));
+        saveEntries(entries);
+        renderGuestbook();
+        letterBody.value = '';
+        setLetterStatus(hasRemoteGuestbook()
+          ? '방명록에 따뜻한 마음을 남겼습니다. 가족들이 함께 볼 수 있습니다.'
+          : '이 기기에 임시로 저장했습니다. Supabase 설정값을 넣으면 함께 볼 수 있습니다.');
+      } catch {
+        setLetterStatus('저장하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+      } finally {
+        saveLetter.disabled = false;
+      }
+    });
+
+    loadGuestbook();
 
     function burst(x, y, n) {
       for (let i = 0; i < n; i++) {
@@ -536,12 +945,13 @@
     }
 
     document.addEventListener('touchstart', e => {
+      if (e.target.closest('a, button, input, textarea')) return;
       for (const t of e.changedTouches)
         burst(t.clientX, t.clientY, 8 + Math.floor(Math.random() * 5));
     }, { passive: true });
 
     document.addEventListener('click', e => {
-      if (e.target.closest('a')) return;
+      if (e.target.closest('a, button, input, textarea')) return;
       burst(e.clientX, e.clientY, 8 + Math.floor(Math.random() * 5));
     });
   </script>
