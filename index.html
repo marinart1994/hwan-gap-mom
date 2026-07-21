@@ -471,9 +471,10 @@
     .guestbook {
       width: 100%;
       margin-top: 20px;
-      padding: 16px 10px 8px;
+      padding: 14px 10px 8px;
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
       background:
         linear-gradient(rgba(168,118,40,0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(168,118,40,0.08) 1px, transparent 1px),
@@ -500,8 +501,8 @@
     .guestbook-entry {
       position: relative;
       border: 1px solid rgba(168,118,40,0.24);
-      background: rgba(255,250,238,0.9);
-      box-shadow: 0 5px 14px rgba(90,56,32,0.08);
+      background: rgba(255,250,238,0.94);
+      box-shadow: 0 4px 10px rgba(90,56,32,0.08);
       transform: rotate(var(--tilt));
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -511,23 +512,21 @@
     .guestbook-entry:nth-child(3n) { --tilt: -0.4deg; }
 
     .guestbook-entry.open {
+      grid-column: 1 / -1;
       transform: rotate(0deg);
-      box-shadow: 0 9px 22px rgba(90,56,32,0.12);
+      box-shadow: 0 8px 18px rgba(90,56,32,0.12);
     }
 
     .guestbook-toggle {
       width: 100%;
-      min-height: 76px;
+      min-height: 68px;
       display: grid;
-      grid-template-columns: 46px 1fr auto;
+      grid-template-columns: 30px 1fr;
       align-items: center;
-      gap: 11px;
-      padding: 13px 12px;
+      gap: 9px;
+      padding: 12px 10px 11px;
       border: 0;
-      background:
-        linear-gradient(145deg, transparent 48%, rgba(168,118,40,0.16) 49%, transparent 51%),
-        linear-gradient(35deg, transparent 48%, rgba(168,118,40,0.12) 49%, transparent 51%),
-        rgba(255,250,238,0.95);
+      background: rgba(255,250,238,0.95);
       color: var(--ink);
       cursor: pointer;
       text-align: left;
@@ -538,26 +537,27 @@
     .guestbook-toggle::before {
       content: '';
       position: absolute;
-      left: 50%;
-      top: -8px;
-      width: 54px;
-      height: 18px;
-      background: rgba(212,168,74,0.28);
-      border: 1px solid rgba(168,118,40,0.16);
-      transform: translateX(-50%) rotate(-2deg);
+      right: -1px;
+      top: -1px;
+      width: 22px;
+      height: 22px;
+      background:
+        linear-gradient(135deg, rgba(212,168,74,0.34) 0 49%, rgba(255,250,238,0.98) 50% 100%);
+      border-left: 1px solid rgba(168,118,40,0.18);
+      border-bottom: 1px solid rgba(168,118,40,0.18);
     }
 
     .guestbook-seal {
-      width: 38px;
-      height: 38px;
+      width: 24px;
+      height: 24px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(139,26,26,0.2);
-      border-radius: 50%;
+      border-radius: 2px;
       background: rgba(139,26,26,0.08);
       color: var(--red);
       font-family: 'Nanum Myeongjo', serif;
-      font-size: 1.05rem;
+      font-size: 0.82rem;
       font-weight: 800;
     }
 
@@ -570,7 +570,7 @@
 
     .guestbook-name {
       font-family: 'Nanum Myeongjo', serif;
-      font-size: 1rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--red);
       line-height: 1.4;
@@ -579,12 +579,13 @@
 
     .guestbook-date {
       color: var(--ink-light);
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       font-weight: 300;
       white-space: nowrap;
     }
 
     .guestbook-open-mark {
+      display: none;
       color: var(--gold);
       font-size: 0.72rem;
       letter-spacing: 0.08em;
@@ -652,6 +653,7 @@
       .hero { padding: 40px 20px 34px; }
       .letter-desk { padding: 22px 16px 18px; }
       .letter-actions { grid-template-columns: 1fr; }
+      .guestbook { grid-template-columns: 1fr; }
     }
   </style>
 </head>
